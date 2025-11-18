@@ -17,6 +17,16 @@ public class Cart {
             System.out.println("The cart is almost full. Cannot add more discs");
         }
     }
+    public void addDVD(DigitalVideoDisc ...discs ) {
+    	if (qtyOrdered + discs.length <= MAX_NUMBERS_ORDERED) {
+    		for (int i=0;i<discs.length;i++) {
+    			addDVD(discs[i]);
+    		}
+    	}
+    	else {
+                System.out.println("The cart is almost full. Cannot add more discs");
+    		}
+    }
     public void removeDVD(DigitalVideoDisc disc) {
         if (qtyOrdered == 0) {
             System.out.println("The cart is empty. Cannot remove discs");

@@ -1,0 +1,4 @@
+Khi thêm phương thức addDVD(DigitalVideoDisc... discs) (sử dụng varargs) vào lớp Cart trong khi đã tồn tại phương thức addDVD(DigitalVideoDisc[] discs)
+-> chương trình sẽ báo lỗi biên dịch (compilation error) nếu có một lời gọi phương thức không rõ ràng.
+Nguyên nhân: Cả hai phương thức này đều có thể nhận một mảng các đối tượng DigitalVideoDisc làm tham số. Bên trong một phương thức, varargs (...) được đối xử như một mảng ([]). Do đó, trình biên dịch Java không thể phân biệt được nên gọi phương thức nào khi bạn truyền vào một mảng, dẫn đến lỗi "ambiguous method call" (lời gọi phương thức không rõ ràng).
+Lựa chọn tốt nhất là chỉ giữ lại phiên bản varargs addDVD(DigitalVideoDisc... discs) và xóa tất cả các phiên bản nạp chồng khác (addDVD(disc1, disc2) và addDVD(discs[]))
