@@ -1,0 +1,28 @@
+1: Tại sao sau khi chạy phương thức swap(s1,s2) thì tên của hai học sinh vẫn không thay đổi? Từ đó, Java là ngôn ngữ truyền tham trị hay truyền tham chiếu?
+	- Tên của hai học sinh không thay đổi vì Java luôn là ngôn ngữ truyền tham trị (pass-by-value).
+	- Khi gọi swap(s1, s2), thứ được truyền vào phương thức không phải là hai đối tượng, mà là bản sao giá trị của các biến tham chiếu s1 và s2 (tức là bản sao của địa chỉ bộ nhớ). Bên trong phương thức swap, việc hoán đổi o1 và o2 chỉ là hoán đổi hai bản sao địa chỉ này. Thao tác đó không hề ảnh hưởng đến các biến s1 và s2 gốc ở hàm main.
+2: Bạn làm thế nào để phương thức swap hoạt động (thật sự tráo đổi thông tin của hai đối tượng được truyền vào)?
+	- Không thể viết một phương thức swap để hoán đổi hai tham chiếu đối tượng gốc trong Java. Thay vào đó, chúng ta phải viết một phương thức để hoán đổi nội dung (các thuộc tính) bên trong của hai đối tượng đó.
+code:
+public static void swapStudentData(Student student1, Student student2) {
+    String tempName = student1.getName();
+    student1.setName(student2.getName());
+    student2.setName(tempName);
+    int tempId = student1.getStudentId();
+    student1.setStudentId(student2.getStudentId());
+    student2.setStudentId(tempId);
+}
+Bằng cách này, các biến tham chiếu s1 và s2 vẫn trỏ đến các đối tượng cũ, nhưng nội dung bên trong các đối tượng đó đã được tráo đổi cho nhau.
+3: Vẽ sơ đồ minh họa cho các vùng nhớ stack và heap...
+Trong main():
+	Trên Heap: Tạo 2 đối tượng Student, một chứa "A" (ở địa chỉ 0x100), một chứa "B" (ở địa chỉ 0x200).
+	Trên Stack: Tạo 2 biến tham chiếu s1 và s2. Biến s1 lưu giá trị 0x100. Biến s2 lưu giá trị 0x200.
+Khi gọi swap(s1, s2):
+	Trên Stack: Một vùng nhớ mới cho swap được tạo. 2 biến cục bộ o1 và o2 được tạo.
+	Pass-by-value: Giá trị của s1 (0x100) được sao chép vào o1. Giá trị của s2 (0x200) được sao chép vào o2.
+Bên trong swap:
+	Việc hoán đổi o1 và o2 chỉ làm thay đổi giá trị của các biến cục bộ này trên Stack. o1 sẽ có giá trị 0x200, o2 sẽ có giá trị 0x100.
+	Quan trọng: Thao tác này không hề ảnh hưởng đến các biến s1 và s2 trong vùng nhớ của main. s1 vẫn là 0x100, s2 vẫn là 0x200.
+Khi swap kết thúc:
+	Vùng nhớ Stack của swap bị xóa. Các biến o1, o2 biến mất.
+	Chương trình quay lại main. s1 vẫn trỏ đến đối tượng "A", s2 vẫn trỏ đến đối tượng "B".
