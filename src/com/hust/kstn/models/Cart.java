@@ -56,10 +56,10 @@ public class Cart {
         }
 
     }
-    public void searchByID(String id) {
+    public void searchByID(int id) {
         boolean found = false;
         for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsInCart[i].getId().equals(id)) {
+            if (itemsInCart[i].getId() == id) {
                 System.out.println("Found DVD: " + itemsInCart[i].getTitle());
                 found = true;
                 break; 
