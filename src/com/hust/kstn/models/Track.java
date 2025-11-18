@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Track {
     private String title;
-    private int length; 
+    private int length;
     public Track(String title, int length) {
         this.title = title;
         this.length = length;
