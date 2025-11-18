@@ -1,0 +1,4 @@
+Java chỉ hỗ trợ đơn kế thừa để tránh "Vấn đề kim cương" và giữ cho ngôn ngữ đơn giản, an toàn hơn.
+	- Vấn đề kim cương: Đây là sự xung đột xảy ra khi một lớp con kế thừa hai phương thức có cùng tên từ hai lớp cha khác nhau. Khi đó, trình biên dịch không biết phải thực thi phương thức của lớp cha nào, gây ra sự mơ hồ và lỗi.
+->Giải pháp của Java: Thay vì đa kế thừa, Java sử dụng Interfaces. Một lớp có thể implements (triển khai) nhiều Interface. Điều này cho phép một lớp có nhiều "dạng" hành vi khác nhau mà không gặp phải xung đột về logic kế thừa, vì Interface chỉ định nghĩa "cần làm gì" chứ không phải "làm như thế nào".
+Cách tiếp cận này giúp Java loại bỏ được sự phức tạp và các lỗi tiềm ẩn của đa kế thừa.
