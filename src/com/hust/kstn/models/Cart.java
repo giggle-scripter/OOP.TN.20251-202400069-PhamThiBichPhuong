@@ -50,6 +50,17 @@ public class Cart {
             System.out.println("The disc does not exist in the cart");
         }
     }
+    public void clearCart() {
+        if (qtyOrdered == 0) {
+            System.out.println("The cart is already empty");
+            return;
+        }
+        for (int i = 0; i < qtyOrdered; i++) {
+            itemsInCart[i] = null;
+        }
+        qtyOrdered = 0;
+        System.out.println("All items have been removed from the cart");
+    }
     public double calculateTotalCost() {
         double total = 0.0;
         for (int i = 0; i < qtyOrdered; i++) {
@@ -58,13 +69,17 @@ public class Cart {
         return total;
     }
     public void print() {
-        System.out.println("=== Total items in cart: " + qtyOrdered + " ===");
-        System.out.println("=== All items in cart ===");
-        for (int i = 0; i < qtyOrdered; i++) {
-            DigitalVideoDisc item = itemsInCart[i];
-            System.out.println("[Title]: " + item.getTitle() + ", " + "[Cost]: " + item.getCost());
+        System.out.println("======================= THE CURRENT CART =======================");
+        if (qtyOrdered == 0) {
+            System.out.println("The cart is empty.");
+        } else {
+            System.out.println("Total items: " + qtyOrdered);
+            for (int i = 0; i < qtyOrdered; i++) {
+                System.out.println("- " + itemsInCart[i].toString());
+            }
+            System.out.println("Subtotal: " + calculateTotalCost() + "$");
         }
-
+        System.out.println("================================================================");
     }
     public void searchByID(int id) {
         boolean found = false;

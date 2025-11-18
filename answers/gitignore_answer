@@ -1,0 +1,23 @@
+1. Tại sao những đường dẫn này nên được thêm vào .gitignore? Nếu không thêm thì sao?
+Các đường dẫn như bin/, out/, .classpath, .project, .settings/… là file tạm, file sinh ra tự động hoặc file cấu hình riêng của IDE.
+Nếu không thêm vào .gitignore:
+ 	-Git sẽ theo dõi và commit cả file tạm → repo nặng và dễ gây xung đột.
+	-Các file cấu hình IDE của bạn có thể không phù hợp với máy khác → gây lỗi khi pull về.
+2. Nếu dùng công cụ khác (IntelliJ IDEA, VS Code), cần ignore gì?
++ IntelliJ IDEA
+Thêm vào .gitignore:
+.idea/
+*.iml
+out/
++ VS Code
+.vscode/
+bin/
+out/
+3. Nếu lỡ commit file tạm rồi, sau đó mới thêm .gitignore và muốn Git ngừng theo dõi nhưng không xóa file khỏi máy?
++ Thực hiện:
+git rm -r --cached .
+git add .
+git commit -m "Stop tracking ignored files"
+Trong đó:
+git rm --cached = xóa file khỏi index (Git không theo dõi nữa),
+File không bị xóa trên máy, chỉ bị xóa khỏi lịch sử theo dõi của Git.

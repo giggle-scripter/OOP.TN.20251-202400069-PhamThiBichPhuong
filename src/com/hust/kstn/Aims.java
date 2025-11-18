@@ -39,7 +39,7 @@ public class Aims {
         System.out.println("+Total cost: "+cart.calculateTotalCost());
         //search
         System.out.print("+Searching by ID 'DVD001': ");
-        cart.searchByID("DVD001"); 
+        cart.searchByID(1); 
         System.out.print("+Searching by title 'Aladdin': ");
         cart.searchByTitle("Aladdin"); 
         System.out.print("+Searching by title 'Titanic': ");
