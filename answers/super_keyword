@@ -1,0 +1,7 @@
+Từ khóa super được dùng để tham chiếu đến lớp cha (superclass) của lớp hiện tại. Trong ví dụ về lớp Book kế thừa lớp Media, từ khóa super có hai ý nghĩa và công dụng chính:
+	- super(title, cost, category); - Gọi Constructor của lớp cha:
+		+ Ý nghĩa: Đây là lời gọi đến phương thức khởi tạo (constructor) của lớp cha Media.
+		+ Công dụng: Khi một đối tượng Book được tạo, nó cũng là một Media, đảm bảo rằng các thuộc tính chung (id, title, cost, category) sẽ được khởi tạo bởi lớp cha Media, là nơi quản lý các thuộc tính đó. Lời gọi constructor của lớp cha bằng super() bắt buộc phải là câu lệnh đầu tiên trong constructor của lớp con.
+	- super.toString(); - Gọi Phương thức của lớp cha:
+		+ Ý nghĩa: Đây là lời gọi đến phương thức toString() của lớp cha Media.
+		+ Công dụng: Nó cho phép lớp con Book tận dụng và tái sử dụng logic in thông tin chung đã được định nghĩa trong lớp Media. Thay vì phải viết lại code để in id, title, cost, category, lớp Book chỉ cần lấy kết quả có sẵn từ lớp cha và nối thêm thông tin riêng của mình (numOfTokens, authors)

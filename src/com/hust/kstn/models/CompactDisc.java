@@ -2,32 +2,34 @@ package com.hust.kstn.models;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class CompactDisc {
-    private static int nbCompactDiscs = 0;
-    private int id;
-    private String title;
-    private String category;
-    private String director;
+public class CompactDisc extends Disc {
     private String artist;
-    private double cost;
     private List<Track> tracks = new ArrayList<>();
     public CompactDisc(String title, String category, String director, String artist, double cost) {
-        this.title = title;
-        this.category = category;
-        this.director = director;
+        super(title, cost, category, 0, director);
         this.artist = artist;
-        this.cost = cost;
-        nbCompactDiscs++;
-        this.id = nbCompactDiscs;
     }
-    public int getId() { return id; }
-    public String getTitle() { return title; }
-    public String getArtist() { return artist; }
-    public String getCategory() {return category;}
-    public String getDirector() {return director;}
-    public double getCost() { return cost; }
-    public List<Track> getTracks() { return tracks; }
+    public String getArtist() {
+        return artist;
+    }
+
+    public List<Track> getTracks() { 
+        return tracks;
+    }
+    
+    public int totalLength() {
+        int totalLength = 0;
+        for (Track track : tracks) {
+            totalLength += track.getLength();
+        }
+        return totalLength;
+    }
+    
+    @Override
+    public int getLength() {
+    	return this.totalLength();
+    }
+    
     public void addTrack(Track track) {
         if (tracks.contains(track)) {
             System.out.println("Track is already in the CD. Cannot add.");
@@ -36,6 +38,7 @@ public class CompactDisc {
             System.out.println("Track has been added to the CD.");
         }
     }
+
     public void removeTrack(Track track) {
         if (tracks.contains(track)) {
             tracks.remove(track);
@@ -44,20 +47,12 @@ public class CompactDisc {
             System.out.println("Track does not exist in the CD. Cannot remove.");
         }
     }
-    public int totalLength() {
-        int total = 0;
-        for (Track track : tracks) {
-            total += track.getLength();
-        }
-        return total;
-    }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("CD[" + id + "][" + title + "][" + category + "][" + artist + "]: " + cost + "$\n");
-        sb.append("Director: " + director + "\n"); 
-        sb.append("Total Length: " + totalLength() + "s\n");
+        sb.append("[" + getId() + "][" + getTitle() + "][" + getCategory() + "][" + getDirector() + "][" + artist + "]" + "[" + getCost() + "]\n");
+        sb.append("Total Length: " + getLength() + "s\n");
         sb.append("Tracks:\n");
         if (tracks.isEmpty()) {
             sb.append("\tNo tracks yet.\n");
