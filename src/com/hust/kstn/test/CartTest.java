@@ -25,6 +25,7 @@ public class CartTest {
         System.out.println("\n========== Remove DVD ==========");
         cart.removeDVD(dvd2);
         cart.print();
+        cart.addDVD(dvd2);
         
         System.out.println("\n========== Add DVDs til full ==========");
         for (int i = 4; i <= 20; i++) {
